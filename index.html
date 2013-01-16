@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html>  
+<head> 
+<title>Resolution: a year's goaltracker</title>
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet" />
+
+<style>
+
+body{
+margin: 0px;
+padding: 0px;
+background: white url(images/greenbg.jpg) no-repeat top fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;}
+
+h1#logo{
+margin: 50px auto 25px auto;
+background: transparent url(images/logo.png) no-repeat top center;
+width: 450px;
+height: 115px;}
+
+	h1#logo span{
+	display: none;}
+	
+#introgram{
+margin: 0px auto;
+width: 450px;
+height: 305px;
+background: transparent url(images/introgram.png) no-repeat center;}
+
+	#introgram *{
+	display: none;}
+	
+#main_form, #thanks{
+width: 450px;
+margin: 20px auto;}
+
+	#main_form input.input-xlarge{
+	width: 435px;
+	padding: 10px;}
+	
+	#main_form button{
+	float: right;
+	font-weight: bold;}
+
+#thanks{
+display: none;
+color: white;
+font-weight: bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="row">
+	<h1 id="logo"><span>Resolution</span></h1>
+	<div id="introgram">
+		<p>make goals</p>
+		<p>track goals</p>
+		<p>share goals</p>
+	</div>
+	<form id="main_form" class="form-vertical" method="post" action="signup.php">
+		<fieldset>
+			<div class="control-group">
+				<div class="controls">
+					<input type="text" class="input-xlarge" name="name" id="name" placeholder="full name" />
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<input type="text" class="input-xlarge" name="email" id="email" placeholder="email address" />
+				</div>
+			</div>
+			<div class="form-controls">
+				<button type="submit" class="btn btn-inverse btn-large">sign up</button>
+			</div>
+		</fieldset>
+	</form>
+	<div id="thanks">
+		<p>Thank you for expressing interest. You'll be the first to know when Resolution is on the market!</p>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+
+$(document).ready( function() {
+	$('#main_form').submit( function(party){
+		party.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: 'signup.php',
+			data: $('#main_form').serialize(),
+			success: function(){
+				$('#main_form').fadeOut();
+				$('#thanks').fadeIn();
+			}
+		})
+	});
+})
+
+</script>
+
+</body>
+</html>
